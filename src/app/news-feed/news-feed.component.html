@@ -1,0 +1,72 @@
+<div class="row justify-content-center blue-100-bg">
+  <div class="col-lg-8 mt-5">
+    <div class="row">
+      <div class="col-lg-3 ps-5">
+        <img src="../../assets/images/randomly-logo-4.svg" alt="" class="mb-3">
+        <ul class="vertical-menu">
+          <li class="mb-4" routerLink="/news-feed">
+            <a class="text-decoration-none text-secondary" routerLink="news-feed" routerLinkActive="text-dark fw-bold">
+              <img class="me-2" src="../../assets/images/home.svg">
+              Home
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="text-decoration-none text-secondary" routerLink="/logout">
+              <img class="me-2" src="../../assets/images/bell.svg"> Notifications
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="text-decoration-none text-secondary" routerLink="/logout">
+              <img class=" me-2" src="../../assets/images/messages.svg">Messages
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="text-decoration-none text-secondary" routerLink="/logout">
+              <img class=" me-2" src="../../assets/images/user.svg">Profile
+            </a>
+          </li>
+          <li class="mb-4">
+            <a class="text-decoration-none text-secondary" routerLink="/logout">
+              <img class=" me-2" src="../../assets/images/log-out.svg">Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+      <app-spiner *ngIf="loading"></app-spiner>
+      <div class="col-lg-6" *ngIf="!loading">
+        <div class="row">
+          <form class="row" [formGroup]="newPostForm" (ngSubmit)="addPost()">
+            <div class="col-lg-10">
+              <input type="text" class="form-control" placeholder="What's going on?" formControlName=text>
+            </div>
+            <div class="col-lg-2">
+              <button class="btn purple-500-bg rounded-pill text-white" type="submit">Post</button>
+            </div>
+          </form>
+        </div>
+        <div class="row bg-white rounded my-5" *ngFor="let post of posts">
+          <div class="d-flex align-items-center user-info">
+            <img src="{{ post.user.profileImage }}" alt="" class="profile-image ">
+            <h5>
+              {{ post.user.firstName }}
+              {{ post.user.lastName }}
+              <span class="text-secondary fs-6">
+                @{{ post.user.username }}
+              </span>
+            </h5>
+          </div>
+          <p class="post-text mt-2">{{ post.text }}</p>
+          <img src="{{ post.user.profileImage }}" class="post-img d-block" alt="">
+          <p class="mt-2">
+            <img src="../../assets/images/not-liked.svg" *ngIf="!post.isLikedByUser" alt="" (click)="likePost(post)">
+            <img src="../../assets/images/liked.svg" *ngIf="post.isLikedByUser" alt="" (click)="likePost(post)">
+            {{ post.likesCount }}
+            <img src="../../assets/images/comment.svg" alt="" class="ms-5"> {{ post.commentsCount }}
+            <img src="../../assets/images/share.svg" alt="" class="ms-5"> 3
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
+  </div>
+</div>

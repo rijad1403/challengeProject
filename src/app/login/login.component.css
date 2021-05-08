@@ -1,0 +1,8 @@
+.girlImg {
+  background-image: url("../../assets/images/sing-up.jfif");
+  background-size: cover;
+}
+
+.form-container {
+  min-height: 90vh;
+}

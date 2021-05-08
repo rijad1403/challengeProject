@@ -1,0 +1,32 @@
+<div class="row justify-content-center blue-100-bg">
+  <div class="col-lg-6 ">
+    <div class="row">
+      <div class="col-lg-12">
+        <img src="../../assets/images/randomly-logo-2.svg" alt="" class="my-5">
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <p>Please select at least 3 influencers to follow
+          <span class="fw-bold">2 more to go</span>
+          <a href="" style="text-align: end;">test</a>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-3 p-2" *ngFor="let influencer of influencers">
+        <div class="bg-white py-3">
+          <img src="{{ influencer.profileImage }}" alt="profile image" class="profile-image w-50 d-block  mx-auto">
+          <p class="text-center fw-bold">{{ influencer.firstName }} {{ influencer.lastName }}</p>
+          <p class="text-center fs-6">Title {{ influencer.jobTitle }}</p>
+          <button class="btn purple-500-border bg-white purple-500-text rounded-pill mx-auto d-block" type="submit"
+            *ngIf="!influencer.isFollowing" (click)="assignInfluencers(influencer.id)">Follow
+          </button>
+          <button class="btn purple-500-bg rounded-pill text-white mx-auto d-block" type="submit"
+            *ngIf="influencer.isFollowing">Following</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn purple-500-bg rounded-pill text-white my-4 mx-auto d-block" type="submit">Load more</button>
+  </div>
+</div>

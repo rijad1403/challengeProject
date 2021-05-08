@@ -1,0 +1,37 @@
+<div class="row blue-100-bg">
+  <div class="col-lg-4 girlImg"></div>
+  <div class="col-lg-8 my-5 form-container">
+    <img src="../../assets/images/randomly-logo.svg" class="d-block mx-auto" alt="">
+    <div class="w-50 mx-auto mt-5 purple-400-border-top bg-white p-5 rounded">
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="row mb-1">
+          <div class="col">
+            <label for="formGroupExampleInput" class="form-label fw-bold">Username</label>
+            <input type="text" class="form-control" placeholder="Username" formControlName="username">
+          </div>
+        </div>
+        <div class="row mb-1">
+          <div class="col">
+            <label for="formGroupExampleInput" class="form-label fw-bold">Password</label>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn purple-500-bg rounded-pill text-white mt-4" type="submit" [disabled]="loginForm.invalid"
+            *ngIf="!loading">Sign in</button>
+          <app-spiner *ngIf="loading"></app-spiner>
+          <div class="alert alert-danger d-none mt-2 text-center" id="login-wrong-validation" role="alert">
+            Wrong credentials entered.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="text-center mt-5">
+              Don't have an account? <a routerLink="/register" class="purple-500-text">Create account</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
